@@ -6,6 +6,7 @@ import { formatDate } from '@angular/common';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import {  NavController, NavParams } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
+import { Meal } from '../classes/Meal';
 
 
 @Component({
@@ -15,7 +16,6 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 
 export class HomePage implements OnInit {
-  graduates=["11","22","12"];
 
   event = {
     title: '',
@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
  
   minDate = new Date().toISOString();
  
-  eventSource = [];
+  eventSource :Meal[];
   viewTitle;
  
   calendar = {
@@ -48,8 +48,8 @@ export class HomePage implements OnInit {
       path:"this.event.path",
       desc: "this.event.desc"
     }
- 
-    this.eventSource.push(eventCopy);
+ //send eventCopy to api
+    //this.eventSource.push(eventCopy);
   }
  
   resetEvent() {
@@ -79,8 +79,9 @@ export class HomePage implements OnInit {
       eventCopy.startTime = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
       eventCopy.endTime = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate() + 1));
     }
- 
-    this.eventSource.push(eventCopy);
+  //send eventCopy to api
+
+    //this.eventSource.push(eventCopy);
     // this.myCal.loadEvents();
     this.resetEvent();
   }
