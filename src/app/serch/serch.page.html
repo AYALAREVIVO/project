@@ -1,0 +1,29 @@
+
+  
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+                <ion-fab-button routerLink="../home">
+                  <ion-icon name="calendar" ></ion-icon>
+                </ion-fab-button>
+              </ion-fab>
+  <ion-content class="card-background-page">
+
+<li *ngFor="let item of pectures">
+
+
+
+
+    <ion-card>
+        <img src="{{item.img}}"/>    
+        <div class="card-subtitle">
+
+        <li *ngFor="let i of item.lab">
+{{i}}
+        </li>
+        </div>
+    </ion-card>
+</li> 
+</ion-content>
+
+{{data}}
+
+
