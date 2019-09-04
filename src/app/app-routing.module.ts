@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'serch', loadChildren: './serch/serch.module#SerchPageModule' },
   { path: 'camera', loadChildren: './camera/camera.module#CameraPageModule' },
   { path: 'option', loadChildren: './option/option.module#OptionPageModule' },
-  { path: 'day', loadChildren: './day/day.module#DayPageModule' },
+  { path: 'day', loadChildren: './day/day.module#DayPageModule' },  { path: 'pic-upload', loadChildren: './pic-upload/pic-upload.module#PicUploadPageModule' },
+
   
 ];
 
