@@ -13,24 +13,40 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-    
-  <ion-list ion-item *ngFor="let label of labels" [hidden] = "labels.length == 0">
-      <ion-checkbox
-      [disabled]="!label.wanted && this.counter == 10"
-        (ionChange)="itemClicked($event)"
-        [(ngModel)]="label.wanted"
-      ></ion-checkbox
-      ><ion-label>{{ label.name }} {{label.probability}}</ion-label>
-  </ion-list>
-
-  <!-- <ion-list ion-item *ngFor="let label of labels">
+  <ion-spinner name="bubbles" [hidden]="labels.length != 0"></ion-spinner>
+  <img *ngIf="load" [src]="domSanitizer.bypassSecurityTrustUrl(base64Image)" />
+  <ion-label
+    ><ion-toggle
+      ion-toggle-text
+      (ionChange)="changeToggle($event)"
+    ></ion-toggle>
+  </ion-label>
+  <ion-list
+    ion-item
+    *ngFor="let label of userLabels | slice: 0:userLabels.length"
+    [hidden]="labels.length == 0"
+  >
     <ion-checkbox
+      [disabled]="!label.wanted && this.counter == 10"
       (ionChange)="itemClicked($event)"
-      [checked]="label.wanted"
+      [(ngModel)]="label.wanted"
     ></ion-checkbox
-    ><ion-label>{{ label.name }}</ion-label>
-  </ion-list> -->
+    ><ion-label>{{ label.name }} {{ label.probability }}</ion-label>
+  </ion-list>
+  <ion-list
+    ion-item
+    *ngFor="let label of labels | slice: 0:paginationLimit"
+    [hidden]="labels.length == 0"
+  >
+    <ion-checkbox
+      [disabled]="!label.wanted && this.counter == 10"
+      (ionChange)="itemClicked($event)"
+      [(ngModel)]="label.wanted"
+    ></ion-checkbox
+    ><ion-label>{{ label.name }} {{ label.probability }}</ion-label>
+  </ion-list>
   <br />
+
   <ion-item *ngIf="counter < 10">
     <ion-label color="primary" floating>Add Label</ion-label>
     <ion-input
@@ -40,6 +56,12 @@
     ></ion-input>
   </ion-item>
 
-  <button ion-button color="primary">OK</button>
-  <img id="loaded" src="https://www.kingarthurflour.com/sites/default/files/recipe_legacy/1496-3-large.jpg">
+  <button
+    ion-button
+    color="primary"
+    (click)="uploadData()"
+    [hidden]="labels.length == 0"
+  >
+    OK
+  </button>
 </ion-content>
